@@ -2,7 +2,7 @@ FROM tomcat:11.0-jdk17
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY target/DemoApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/Config.war /usr/local/tomcat/webapps/Config.war
 
 EXPOSE 8080
 
