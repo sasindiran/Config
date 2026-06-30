@@ -5,7 +5,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -23,12 +22,14 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Build Docker Image
-        run: |
-          docker build -t config-app:latest .
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: config-app:latest
 
-      - name: Save Docker Image
-        run: |
-          docker save -o config.tar config-app:latest
+      - name: Export Docker Image
+        run: docker save config-app:latest -o config.tar
 
       - name: Upload Docker Image
         uses: actions/upload-artifact@v4
